@@ -10,8 +10,7 @@ import java.awt.event.ActionListener;
 public class JGraph extends JPanel implements ActionListener {
 
     Timer timer;
-    private Shoot tir;
-    private Shoot tir2;
+    private TirMissile testtir;
 
     public JGraph (int tempo){
         super();
@@ -22,8 +21,10 @@ public class JGraph extends JPanel implements ActionListener {
 
     public void init(){
         setBounds(0,0,800,600);
-        tir = new Shoot(400,300,4, 90,2, 10, true);
-        tir2 = new Shoot(400,300,4, 90,2, 190, true);
+        //testtir = new Tir_rectiligne_one(100,100, 30);
+        //testtir2 = new Tir_rectiligne_two(200,100, 30);
+        //testtir3 = new Tir_rectiligne_three(300,100, 30);
+        testtir = new Tir_etoile_spin_8(200,200);
     }
 
     public void paint(Graphics g){
@@ -34,15 +35,13 @@ public class JGraph extends JPanel implements ActionListener {
     }
 
     private void affichage(Graphics g){
-        this.tir.affichage(g);
-        this.tir2.affichage(g);
+        this.testtir.affichage(g);
     }
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
         if(actionEvent.getSource() == timer){
             repaint();
-            //tir.testSpeed();
         }
     }
 }

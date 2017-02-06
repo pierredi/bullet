@@ -20,7 +20,6 @@ public class Shoot {
     private int frequence;
     private int compteur=0;
 
-
     private double spin = 3 ;
     private boolean horaire = true;
     private boolean accelere = true;
@@ -176,7 +175,6 @@ public class Shoot {
     public int getFrequence() {
         return frequence;
     }
-
     public void setFrequence(int frequence) {
         this.frequence = frequence;
     }
@@ -188,7 +186,6 @@ public class Shoot {
     public void setDirection(double direction) {
         this.direction = direction;
     }
-
     public int getCompteur() {
         return compteur;
     }
