@@ -3,6 +3,9 @@ import javax.swing.Timer;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by osboxes on 30/01/17.
@@ -10,7 +13,8 @@ import java.awt.event.ActionListener;
 public class JGraph extends JPanel implements ActionListener {
 
     Timer timer;
-    private TirMissile testtir;
+    private List<TirMissile> canon = new ArrayList<>();
+    private TirMissile tir,tir1,tir2,tir3;
 
     public JGraph (int tempo){
         super();
@@ -21,10 +25,14 @@ public class JGraph extends JPanel implements ActionListener {
 
     public void init(){
         setBounds(0,0,800,600);
-        //testtir = new Tir_rectiligne_one(100,100, 30);
-        //testtir2 = new Tir_rectiligne_two(200,100, 30);
-        //testtir3 = new Tir_rectiligne_three(300,100, 30);
-        testtir = new Tir_etoile_spin_8(200,200);
+        tir = new Tir_rectiligne_one(100,100, 0);
+        tir1 = new Tir_rectiligne_two(200,100, 90);
+        tir2 = new Tir_rectiligne_three(300,100, 90);
+        tir3 = new Tir_etoile_spin_8(600,200);
+        canon.add(tir);
+        canon.add(tir1);
+        canon.add(tir2);
+        canon.add(tir3);
     }
 
     public void paint(Graphics g){
@@ -35,7 +43,11 @@ public class JGraph extends JPanel implements ActionListener {
     }
 
     private void affichage(Graphics g){
-        this.testtir.affichage(g);
+        Iterator<TirMissile> iter = canon.iterator();
+        while(iter.hasNext()){
+            TirMissile coudDeFeu = iter.next();
+            coudDeFeu.affichage(g);
+        }
     }
 
     @Override

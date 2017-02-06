@@ -23,9 +23,10 @@ abstract public class TirMissile {
     private boolean accelere = true;
     private double maxSpin=15;
     private double minSpin=1;
+    private Color colorShoot;
 
     public void init(int posx, int posy, int nbBalles, double angle, int frequence, int direction,
-                     boolean rotation, double minSpin, double maxSpin) {
+                     boolean rotation, double minSpin, double maxSpin, Color couleur) {
         this.setPosX(posx);
         this.setPosY(posy);
         this.setAngle(angle);
@@ -33,6 +34,7 @@ abstract public class TirMissile {
         this.setFrequence(frequence);
         this.setDirection(direction);
         this.setRotation(rotation);
+        this.setColorShoot(couleur);
         this.setCompteur(0);
         this.setMinSpin(minSpin);
         this.setMaxSpin(maxSpin);
@@ -78,8 +80,8 @@ abstract public class TirMissile {
 
     public void affichage(Graphics g){
         for (Bullet projectile : this.getBalles()) {
-            g.setColor(Color.RED);
-            g.fillOval((int) projectile.getPosx(), (int) projectile.getPosy(), 5, 5);
+            g.setColor(colorShoot);
+            g.fillOval((int) projectile.getPosx(), (int) projectile.getPosy(), 8, 8);
         }
         this.update();
     }
@@ -212,5 +214,13 @@ abstract public class TirMissile {
 
     public void setMinSpin(double minSpin) {
         this.minSpin = minSpin;
+    }
+
+    public Color getColorShoot() {
+        return colorShoot;
+    }
+
+    public void setColorShoot(Color colorShoot) {
+        this.colorShoot = colorShoot;
     }
 }

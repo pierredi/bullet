@@ -8,7 +8,7 @@ import java.util.List;
  */
 public class Shoot {
 
-    private List<Bullet> balles = new ArrayList<Bullet>();
+    private List<Bullet> balles = new ArrayList<>();
 
     private double direction;
     private double angle;
