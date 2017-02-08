@@ -18,15 +18,15 @@ abstract public class TirMissile {
     private boolean rotation;
     private int frequence;
     private int compteur=0;
-    private double spin = 3 ;
-    private boolean horaire = true;
-    private boolean accelere = true;
+    private double spin = 10 ;
     private double maxSpin=15;
     private double minSpin=1;
-    private Color colorShoot;
+    private boolean wave;
+    private Color colorShoot=Color.black;
+
 
     public void init(int posx, int posy, int nbBalles, double angle, int frequence, int direction,
-                     boolean rotation, double minSpin, double maxSpin, Color couleur) {
+                     boolean rotation, double minSpin, double maxSpin) {
         this.setPosX(posx);
         this.setPosY(posy);
         this.setAngle(angle);
@@ -34,45 +34,42 @@ abstract public class TirMissile {
         this.setFrequence(frequence);
         this.setDirection(direction);
         this.setRotation(rotation);
-        this.setColorShoot(couleur);
         this.setCompteur(0);
         this.setMinSpin(minSpin);
         this.setMaxSpin(maxSpin);
+        this.setWave(false);
+    }
+
+    public void init(int posx, int posy, int nbBalles, double angle, int frequence, int direction,
+                     boolean rotation, double minSpin, double maxSpin, boolean wave) {
+        this.setPosX(posx);
+        this.setPosY(posy);
+        this.setAngle(angle);
+        this.setNbBalles(nbBalles);
+        this.setFrequence(frequence);
+        this.setDirection(direction-angle/2);
+        this.setRotation(rotation);
+        this.setCompteur(0);
+        this.setMinSpin(minSpin);
+        this.setMaxSpin(maxSpin);
+        this.setWave(wave);
     }
 
     public void ajoutBalles(){
-        double angleBase = angle / (nbBalles+1d);
-        double angleInit = angleBase;
+        double angleBase = 0.0d;
+        if(nbBalles>1){
+            angleBase = angle / (nbBalles-1);
+        }
+
         for (int cpt = 0; cpt<nbBalles; cpt++){
-            Bullet proj = new Bullet(this.posX,this.posY,6, direction + angleInit);
+            Bullet proj = new Bullet(this.posX,this.posY,4, direction - angle/2 + cpt * angleBase);
             balles.add(proj);
-            angleInit +=angleBase;
         }
     }
 
-    private void updateRotation(){
-        if(horaire){
-            setDirection(direction + spin);
-        } else {
-            setDirection(direction - spin);
-        }
-        if (accelere){
-            setSpin(1.91d*spin);
-        } else {
-            setSpin(0.8d * spin);
-        }
-        if (spin > maxSpin){
-            accelere=false;
-        }
-        if (spin < minSpin){
-            accelere=true;
-            horaire = !horaire;
-        }
-    }
-
-    private boolean isAlive(Bullet balle){
+    public boolean isAlive(Bullet balle){
         boolean result = true;
-        if (balle.getPosx() <= 25 || balle.getPosx() >= 675 || balle.getPosy() <= 25 || balle.getPosy() >= 575){
+        if (balle.getPosx() <= 10 || balle.getPosx() >= 790 || balle.getPosy() <= 10 || balle.getPosy() >= 590){
             result = false;
         }
         return result;
@@ -80,15 +77,14 @@ abstract public class TirMissile {
 
     public void affichage(Graphics g){
         for (Bullet projectile : this.getBalles()) {
-            g.setColor(colorShoot);
-            g.fillOval((int) projectile.getPosx(), (int) projectile.getPosy(), 8, 8);
+            projectile.affichage(g, isWave(), getColorShoot());
         }
         this.update();
     }
 
     public void update(){
         compteur++;
-        Iterator<Bullet> iter = balles.iterator();
+        Iterator<Bullet> iter = getBalles().iterator();
         while(iter.hasNext()){
             Bullet courant = iter.next();
             courant.update();
@@ -96,11 +92,8 @@ abstract public class TirMissile {
                 iter.remove();
             }
         }
-        if(compteur%frequence==0){
-            if(this.rotation){
-                updateRotation();
-            }
-            ajoutBalles();
+        if(compteur%getFrequence()==0){
+           ajoutBalles();
         }
     }
 
@@ -183,23 +176,6 @@ abstract public class TirMissile {
     public void setSpin(double spin) {
         this.spin = spin;
     }
-
-    public boolean isHoraire() {
-        return horaire;
-    }
-
-    public void setHoraire(boolean horaire) {
-        this.horaire = horaire;
-    }
-
-    public boolean isAccelere() {
-        return accelere;
-    }
-
-    public void setAccelere(boolean accelere) {
-        this.accelere = accelere;
-    }
-
     public double getMaxSpin() {
         return maxSpin;
     }
@@ -214,6 +190,14 @@ abstract public class TirMissile {
 
     public void setMinSpin(double minSpin) {
         this.minSpin = minSpin;
+    }
+
+    public boolean isWave() {
+        return wave;
+    }
+
+    public void setWave(boolean wave) {
+        this.wave = wave;
     }
 
     public Color getColorShoot() {

@@ -6,7 +6,8 @@ import java.awt.*;
 public class Tir_rectiligne_one extends TirMissile {
 
     public Tir_rectiligne_one(int posx, int posy, int direction) {
-        this.init(posx,posx,1,90, 17, direction,false,1,15, Color.green);
+        this.init(posx,posx,1,180, 17, direction,false,1,15);
+        setColorShoot(Color.blue);
         ajoutBalles();
     }
 }
