@@ -14,7 +14,13 @@ public class JGraph extends JPanel implements ActionListener {
 
     Timer timer;
     private List<TirMissile> canon = new ArrayList<>();
-    private TirMissile tir,tir1,tir2,tir3,tir4,tir5,tir6,tir7,tir8, tirSin, tirSin2,tirSin3;
+    //rectiligne;
+    private TirMissile tir,tir1,tir2;
+    //spin
+    private TirMissile tir3,tir4,tir5,tir6;
+    //ring sing
+    private TirMissile tir7,tir8, tirSin, tirSin2,tirSin3;
+    private TirMissile multi1,multi2, tir45;
 
     public JGraph (int tempo){
         super();
@@ -37,10 +43,13 @@ public class JGraph extends JPanel implements ActionListener {
         tirSin =  new Tir_sin_one( 200,200,45);
         tirSin2 =  new Tir_sin_two( 300,400,270);
         tirSin3 =  new Tir_sin_three( 300,400,270);
+        multi1 = new Tir_spirale_multi( 300,400,0);
+        multi2 = new Tir_spirale_multi_right( 300,400,180);
+        tir45 = new Tir_rectiligne_4_5(100,300,0);
         //canon.add(tir);
         //canon.add(tir1);
         //canon.add(tir2);
-        canon.add(tir3);
+        //canon.add(tir3);
         //canon.add(tir4);
         //canon.add(tir5);
         //canon.add(tir6);
@@ -48,6 +57,9 @@ public class JGraph extends JPanel implements ActionListener {
         //canon.add(tirSin);
         //canon.add(tirSin2);
         //canon.add(tirSin3);
+        //canon.add(multi1);
+        //canon.add(multi2);
+        canon.add(tir45);
     }
 
     public void paint(Graphics g){

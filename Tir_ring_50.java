@@ -8,7 +8,7 @@ public class Tir_ring_50 extends TirMissile {
     private int compteur =0;
 
     public Tir_ring_50(int posx, int posy, int direction) {
-        this.init(posx,posx,50,380, 17, direction,false,1,15);
+        this.init(posx,posy,50,380, 17, direction,false,1,15);
         ajoutBalles();
     }
 

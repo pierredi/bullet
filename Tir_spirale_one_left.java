@@ -7,7 +7,7 @@ public class Tir_spirale_one_left extends TirMissile {
     private int compteur=0;
 
     public Tir_spirale_one_left(int posx, int posy, int direction) {
-        this.init(posx,posx,1,90, 5, direction,true,1,15);
+        this.init(posx,posy,1,90, 5, direction,true,1,15);
         ajoutBalles();
     }
 

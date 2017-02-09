@@ -9,7 +9,7 @@ public class Tir_sin_one extends TirMissile {
 
 
     public Tir_sin_one(int posx, int posy, int direction) {
-        this.init(posx,posx,1,0, 5, direction,false,1,15,true);
+        this.init(posx,posy,1,0, 5, direction,false,1,15,true);
         setColorShoot(Color.red);
         ajoutBalles();
     }

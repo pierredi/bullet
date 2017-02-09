@@ -8,7 +8,7 @@ public class Tir_rectiligne_explo extends TirMissile {
     private int compteur = 0;
 
     public Tir_rectiligne_explo(int posx, int posy, int direction) {
-        this.init(posx,posx,1,90, 27, direction,false,1,15);
+        this.init(posx,posy,1,90, 27, direction,false,1,15);
         ajoutBalles();
     }
 

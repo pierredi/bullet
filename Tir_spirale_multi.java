@@ -1,14 +1,13 @@
-import java.awt.*;
 import java.util.Iterator;
 
 /**
  * Created by osboxes on 06/02/17.
  */
-public class Tir_spirale_three_left extends TirMissile {
+public class Tir_spirale_multi extends TirMissile {
     private int compteur=0;
 
-    public Tir_spirale_three_left(int posx, int posy, int direction) {
-        this.init(posx,posy,3,480, 7, direction,true,1,15);
+    public Tir_spirale_multi(int posx, int posy, int direction) {
+        this.init(posx,posy,5,360, 7, direction,true,1,15);
         ajoutBalles();
     }
 

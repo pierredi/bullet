@@ -62,7 +62,7 @@ abstract public class TirMissile {
         }
 
         for (int cpt = 0; cpt<nbBalles; cpt++){
-            Bullet proj = new Bullet(this.posX,this.posY,4, direction - angle/2 + cpt * angleBase);
+            Bullet proj = new Bullet(this.posX,this.posY,4, direction - angle + cpt * angleBase);
             balles.add(proj);
         }
     }
